@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/GymApp/static/css/main.a17237b6.css",
+    "main.js": "/GymApp/static/js/main.62d44be6.js",
+    "static/media/Gymphoto.jpg": "/GymApp/static/media/Gymphoto.b9418195fc04b66b55a1.jpg",
+    "static/media/gym.png": "/GymApp/static/media/gym.6e701417c428e2fbc267.png",
+    "index.html": "/GymApp/index.html",
+    "main.a17237b6.css.map": "/GymApp/static/css/main.a17237b6.css.map",
+    "main.62d44be6.js.map": "/GymApp/static/js/main.62d44be6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a17237b6.css",
+    "static/js/main.62d44be6.js"
+  ]
+}
