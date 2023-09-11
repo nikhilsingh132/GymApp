@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import HorizontalScrollBar from './HorizontalScrollBar';
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+function SearchExercises({ setexercises, bodyPart, setbodyPart }) {
 
-function SearchExercises({setexercises,bodyPart,setbodyPart}) {
-
+  const { transcript } = useSpeechRecognition("");
+  const [Buttonvalue, setButtonvalue] = useState("SPEAK 🎤")
   const [search, setsearch] = useState('');
   const [bodyParts, setbodyParts] = useState([]);
 
@@ -14,7 +16,7 @@ function SearchExercises({setexercises,bodyPart,setbodyPart}) {
         method: 'GET',
         url: 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
         headers: {
-          'X-RapidAPI-Key': '7982d66f7emsh2ee6384b28d6c40p111227jsn3cffea2a6042',
+          'X-RapidAPI-Key': '39ceef5eabmsh365ed796fc87a19p17bcb7jsn5837d2be86c0',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
         }
       };
@@ -28,7 +30,19 @@ function SearchExercises({setexercises,bodyPart,setbodyPart}) {
     };
     fetchexercisedata();
   }, []);
+  function func2() {
 
+    setsearch(transcript);
+    if (Buttonvalue === "STOP 🔇") {
+      setButtonvalue("SPEAK 🎤")
+    }
+    else {
+      setButtonvalue("STOP 🔇")
+    }
+
+
+    console.log(search);
+  }
   const handlesearch = async () => {
     if (search) {
 
@@ -36,7 +50,7 @@ function SearchExercises({setexercises,bodyPart,setbodyPart}) {
         method: 'GET',
         url: 'https://exercisedb.p.rapidapi.com/exercises',
         headers: {
-          'X-RapidAPI-Key': '7982d66f7emsh2ee6384b28d6c40p111227jsn3cffea2a6042',
+          'X-RapidAPI-Key': '39ceef5eabmsh365ed796fc87a19p17bcb7jsn5837d2be86c0',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
         }
       };
@@ -99,15 +113,34 @@ function SearchExercises({setexercises,bodyPart,setbodyPart}) {
             width: { lg: '100px', xs: '50px' },
             height: '54px',
             fontSize: { lg: "16px", xs: "12px" },
-            position: "absolute"
+            position: "relative"
           }}
           onClick={handlesearch}>
           Search
         </Button>
+        <Button
+          className="search-btn"
+          sx={{
+            bgcolor: "#ff2625",
+            color: "#fff",
+            textTransform: "none",
+            width: { lg: "100px", xs: "50px" },
+            fontsize: { lg: "16px", xs: "12px" },
+            height: "54px",
+            position: "relative",
+            marginLeft: "5px"
+          }}
+          onClick={() => {
+            func2();
+            SpeechRecognition.startListening();
 
+          }}
+        >
+          {Buttonvalue}
+        </Button>
       </Box>
-      <Box sx={{position:"relative" , width:"100%", p:"20px"}}>
-          <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setbodyPart={setbodyPart}/>
+      <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
+        <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setbodyPart={setbodyPart} />
       </Box>
     </Stack>
   )

@@ -23,7 +23,7 @@ function Exercises({ exercises, setexercises, bodyPart }) {
         method: 'GET',
         url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
         headers: {
-          'X-RapidAPI-Key': '7982d66f7emsh2ee6384b28d6c40p111227jsn3cffea2a6042',
+          'X-RapidAPI-Key': '39ceef5eabmsh365ed796fc87a19p17bcb7jsn5837d2be86c0',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
         }
       };
